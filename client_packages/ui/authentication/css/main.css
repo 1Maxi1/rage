@@ -1,0 +1,72 @@
+body {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.vertical-center {
+    min-height: 100%;
+    min-height: 100vh;
+
+
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.login-form {
+    margin: auto;
+}
+
+
+
+
+
+
+
+.padding-remove{padding:0;}
+.padding-remove-right{padding-right:0;}
+.padding-remove-left{padding-left:0;}
+.margin-remove{margin:0;}
+
+.margin-top-large{margin-top:40px;}
+.margin-top-medium{margin-top:30px;}
+.margin-top-small{margin-top:20px;}
+.margin-top-xsmall{margin-top:10px;}
+.margin-bottom-xsmall{margin-bottom:10px;}
+.margin-bottom-small{margin-bottom:20px;}
+.margin-bottom-medium{margin-bottom:30px;}
+.margin-bottom-large{margin-bottom:40px;}
+.padding-bottom-large{padding-bottom:40px;}
+.padding-bottom-medium{padding-bottom:30px;}
+.padding-bottom-small{padding-bottom:20px;}
+.padding-top-large{padding-top:40px;}
+.padding-top-medium{padding-top:30px;}
+.padding-top-small{padding-top:20px;}
+
+.padding-small{padding:20px;}
+.padding-medium{padding:30px;}
+.padding-large{padding:40px;}
+
+.col-md-offset-1 {
+    margin-left: 8.33333%; }
+.col-md-offset-2 {
+    margin-left: 16.66667%; }
+.col-md-offset-3 {
+    margin-left: 25%; }
+.col-md-offset-4 {
+    margin-left: 33.33333%; }
+.col-md-offset-5 {
+    margin-left: 41.66667%; }
+.col-md-offset-6 {
+    margin-left: 50%; }
+.col-md-offset-7 {
+    margin-left: 58.33333%; }
+.col-md-offset-8 {
+    margin-left: 66.66667%; }
+.col-md-offset-9 {
+    margin-left: 75%; }
+.col-md-offset-10 {
+    margin-left: 83.33333%; }
+.col-md-offset-11 {
+    margin-left: 91.66667%; }
+.col-md-offset-12 {
+    margin-left: 100%; } }

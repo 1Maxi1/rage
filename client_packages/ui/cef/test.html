@@ -1,0 +1,221 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Hud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="fonts/notify.css">
+    <link rel="stylesheet" href="css/noty.css" />
+    <link rel="stylesheet" href="css/theme.css" />-->
+    <link rel="stylesheet" href="css/hud.css">
+    <style>
+        #effect {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #safezone {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /*background: rgba(197, 0, 0, 0.5);*/
+        }
+
+        .inpocket {
+            background-image: url('res/inpocket.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100%;
+            position: absolute;
+        }
+
+        .info {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 10pt;
+            font-weight: 600;
+            color: white;
+            text-shadow: 1px 1px 5px black,1px 1px 5px black;
+        }
+    </style>
+    <title>HUD</title>
+</head>
+<body>
+    <div id="safezone">
+        <div class="inGameHud" v-if="show">
+            <div class="adaptivhud">
+                <div class="position">
+                    <!--<div class="gunshud" v-if="ammo"> 
+                       !-- <div class="patrons">
+                            <img src="./images/hud/new/patron.svg"> 
+                           !-- <div class="patronsblock">
+                                <p id="patronnum">{{ammo}}</p>
+                            </div> --
+                        </div> --
+                    </div>-->
+                    <!--<div class="hud">-->
+                    <div>
+                        <!--<div class="microhud">-->
+                            <!--<img style="width: 53px;" v-if="mic" id="microsound" src="./images/hud/new/micro_on.svg">
+                            <img style="width: 53px;" v-else id="microsound" src="./images/hud/new/micro_off.svg">-->
+                       <!-- </div>-->
+                        <div class="pouch">
+                            <table>
+                               <!-- <tr>
+                                    <td>
+                                        <div class="moneyinblock">
+                                            <img style="width:20px;" src="./images/hud/new/time_koocraft.svg"><p style="margin-left: 5px; font-weight: bold; font-size: 15px;font-weight: 600; color: #fff;">{{date}} {{time}}</p>
+                                        </div>
+                                    </td>
+                                </tr> -->
+                               <!-- <tr>
+                                    <td>
+                                        <div class="moneyinblock">
+                                            <img style="width:20px;" src="./images/hud/new/money_icon_koo.svg"><p style="margin-left: 5px; font-weight: bold; font-size: 15px;font-weight: 600; color: #ece611;">{{money}} $</p>
+                                        </div>
+                                    </td>
+                                </tr> -->
+                                <!--<tr>
+                                    <td>
+                                        <div class="moneyinblock">
+                                            <img style="width:20px;color:#ece611;" src="images/hud/money_bank.svg"><p style="font-weight: bold; font-size: 15px; color: #ece611;"> {{bank}} $</p>
+                                        </div>
+                                    </td>
+                                </tr>-->
+                            </table>
+                        </div>
+                    </div>
+                    <div class="locationhud" style="margin-bottom: 70px;border-left: 5px solid #e4e34c;">
+                        <table>
+                            <tr>
+                                <td><img style="width:25px;" src="./images/hud/new/drop-of-liquid.svg"></td>
+                                <td><p style="font-family: 'Roboto', sans-serif;">{{water}}%</p></td>
+                            </tr>
+                            <tr>
+                                <td><img style="width:25px;" src="./images/hud/new/fork-and-knife-eating-utensils.svg"></td>
+                                <td><p style="font-family: 'Roboto', sans-serif;">{{eat}}%</p></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="locationhud" style="border-left: 5px solid #e4e34c;">
+                        <table>
+                            <tr>
+                                <td><img style="width:25px;" src="./images/hud/new/location.svg"></td>
+                                <td><p id="location">{{crossingRoad}}</p><p id="street">{{street}}</p></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="speedometer" :style="{ opacity: inVeh ? 1 : 0 }">
+                       <!-- <svg  xmlns="http://www.w3.org/2000/svg"  viewBox="15 0 167 167" :data-value="speed" class="speed"> -->
+                            <path class="bg"  d="M41 149.5a77 77 0 1 1 117.93 0"  fill="none"/>
+                            <path class="meter" d="M41 149.5a77 77 0 1 1 117.93 0" fill="none" stroke-dasharray="350" stroke-dashoffset="350"/>
+                        </svg>
+                        <!--<svg  xmlns="http://www.w3.org/2000/svg"  viewBox="15 0 167 167" :data-value="fuel" data-maxvalue="100"  class="fuel">-->
+                            <path class="bg"  d="M41 149.5a77 77 0 1 1 117.93 0"  fill="none"/>
+                            <path class="meter" d="M41 149.5a77 77 0 1 1 117.93 0" fill="none" stroke-dasharray="350" stroke-dashoffset="350"/>
+                        </svg>
+                       <!-- <div class="speed_count">
+                            !-- v-if="Math.random() > 0.5" --
+                            <div class="count" v-if="speed < 10"><div class="bg">00</div>{{speed}}</div>
+                            <div class="count" v-else-if="speed < 100"><div class="bg">0</div>{{speed}}</div>
+                            <div class="count" v-else><div class="bg"></div>{{speed}}</div>
+                            <div class="type">км/ч</div>
+                        </div>
+                        !--<p class="icon_fuel">{{fuel}}L</p>
+                        <div class="lamp_list">
+                            <img v-if="belt" src="./images/hud/new/sec_yes.png" alt="" class="sec">
+                            <img v-else src="./images/hud/new/sec_no.png" alt="" class="sec">
+
+                            <img v-if="doors" src="./images/hud/new/door_no.png" alt="" class="door">
+                            <img v-else src="./images/hud/new/door_yes.png" alt="" class="door">
+
+                            <img v-if="engine" src="./images/hud/new/engine_yes.png" alt="" class="engine">
+                            <img v-else src="./images/hud/new/engine_no.png" alt="" class="engine">
+
+                            !--<img src="./images/hud/new/lamp_no.png" alt="" class="lamp">--
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help">
+            <table style="font-size:15px;font-weight: 900;color:#fff;">
+                <tr><td><p class="help-buttons">F2</p></td><td><p class="help-buttons2">Курсор</p></td></tr>
+               <!-- <tr><td><p class="help-buttons">I</p></td><td><p class="help-buttons2">Инвентарь</p></td></tr>
+                <tr><td><p class="help-buttons">N</p></td><td><p class="help-buttons2">Микрофон</p></td></tr>
+                <tr><td><p class="help-buttons">T</p></td><td><p class="help-buttons2">Чат</p></td></tr>
+                <tr><td><p class="help-buttons">U</p></td><td><p class="help-buttons2">Анимации</p></td></tr>
+                <tr><td><p class="help-buttons">B</p></td><td><p class="help-buttons2">Завести машину</p></td></tr>
+                <tr><td><p class="help-buttons">L</p></td><td><p class="help-buttons2">Закрыть/открыть авто</p></td></tr>
+                <tr><td><p class="help-buttons">5</p></td><td><p class="help-buttons2">Никнеймы</p></td></tr>
+                <tr><td><p class="help-buttons">6</p></td><td><p class="help-buttons2">Круиз-контроль</p></td></tr>
+                <tr><td><p class="help-buttons">Ё(~)</p></td><td><p class="help-buttons2">Курсор</p></td></tr>
+                <tr><td><p class="help-buttons">F3</p></td><td><p class="help-buttons2">Перезагрузить микрофон</p></td></tr>
+                <tr><td><p class="help-buttons">F5</p></td><td><p class="help-buttons2">Скрыть HUD</p></td></tr>
+                <tr><td><p class="help-buttons">F9</p></td><td><p class="help-buttons2">Донат панель</p></td></tr>
+                <tr><td><p class="help-buttons">F10</p></td><td><p class="help-buttons2">Помощь</p></td></tr> -->
+            </table>
+        </div>
+        
+        <div id="chat" class="chat">
+            <ul id="chat_messages"></ul>
+        </div>
+    
+        <div class="logobox" v-if="show" style="background: rgb(0 0 0 / 0%);">
+            <div class="logo">
+                <a v-if="server == 1">
+                    <p class="logobox_info">SWG RP</p>
+                    <p class="logobox_info2">Онлайн {{online}} ( ID {{playerId}} )</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="effect"></div>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/colorInterpolator.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/hud.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/noty.min.js"></script>
+    <script src="js/notify.js"></script>
+    <script>
+        function hidehud(toggle) {
+            if (toggle) {
+                HUD.show = false;
+                logotype.show = false;
+            } else {
+                HUD.show = true;
+                logotype.show = true;
+            }
+        }
+        function hidehelp(toggle) {
+            if (toggle) {
+                $('.help').hide();
+            } else {
+                $('.help').show();
+            }
+        }
+    </script>
+    <script>
+        function updateSafeZoneSize(screenWidht, screenHeight, safeZoneSize) {
+            
+            var savezoneDiv = document.getElementById("safezone");
+            safeZoneSize = (((1.0 - safeZoneSize) * 0.5) * 100.0);
+
+            savezoneDiv.style.right = savezoneDiv.style.left = ((screenWidht / 100) * safeZoneSize) + "px";
+            savezoneDiv.style.top = savezoneDiv.style.bottom = ((screenHeight / 100) * safeZoneSize) + "px";
+            return true;
+        }
+    </script>
+</body>
+</html>
