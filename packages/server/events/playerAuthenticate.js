@@ -75,10 +75,6 @@ mp.events.add("testSpawn", (player) =>
     player.name = `{FFFFFF}${player.name} (${player.id})`;
     player.spawn(new mp.Vector3(-1037.7287, -2737.8232, 20.1962));
     player.call('showhud');
-    player.call('render');
-    player.call('spidometr');
-    //player.setMoney(player.data.money);
-    player.model = mp.joaat('mp_m_freemode_01');
     mp.players.forEach((_player, player, id) =>
     {
        // _player.notify("'~r~' + player.name + '~w~ присоединился!'");
