@@ -8,9 +8,9 @@ module.exports =
 		this.Handle = mysql.createConnection(
 		{
 			host: '127.0.0.1',
-			user: 'test',
-			password: '123456', // пароль от базы данных
-			database: 'server', // название базы данных
+			user: '123',
+			password: '123', // пароль от базы данных
+			database: '123', // название базы данных
 		});
 		this.Handle.connect(function (e)
 		{
