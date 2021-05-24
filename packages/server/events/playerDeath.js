@@ -11,40 +11,41 @@
     }
 
     setTimeout(() => {
-    player.playAnimation('mp_arresting', 'idle', 1, 49) //ЧЕРЕЗ 3 СЕКУНДЫ СТАВИТ АНИМАЦИЮ 
-    }, 3000)
-    setTimeout(() => {
+    player.playAnimation('mp_arresting', 'idle', 1, 49) //ЧЕРЕЗ 3 СЕКУНДЫ СТАВИТ АНИМАЦИЮ
+        setTimeout(() => {
         player.spawn(new mp.Vector3(-466.1144, -290.8322, 34.9115)); //ЧЕРЕЗ МИНУТУ ТЕПАЕТ В БОЛЬКУ И ДАЕТ 10 HP
         player.health = 10;
-    }, 60000)
         setTimeout(() => {
         player.health = 10;
-    }, 5000)
         setTimeout(() => {
         player.health = 10;
-    }, 5000)
         setTimeout(() => {
         player.health = 10;
-    }, 5000)
         setTimeout(() => {
         player.health = 10;
-    }, 5000)
         setTimeout(() => {
         player.health = 10;
-    }, 5000)
         setTimeout(() => {
         player.health = 10;
-    }, 5000)
         setTimeout(() => {
         player.health = 10;
-    }, 5000)
         setTimeout(() => {
         player.health = 10;
-    }, 5000)
+        setTimeout(() => {
+        player.health = 10;
         setTimeout(() => {
         player.health = 10;
         player.notify('Вы закончили личение');
     }, 5000)
+    }, 5000)
+    }, 5000)
+    }, 5000)
+    }, 5000)
+    }, 5000)
+    }, 5000)
+    }, 5000)
+    }, 5000)
+    }, 5000)
+    }, 60000)
+    }, 3000)
 });
-
-// -795.5082, -220.2381, 37.0796 маркер для премиум авто
