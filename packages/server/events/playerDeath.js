@@ -3,10 +3,10 @@
     const deathName = player.name;
     if (killer) {
         const killerName = killer.name;
-        player.notify('~r~' + deathName + ' был убит ' + killerName);
-        console.log("<Kill log> " + deathName + "был убит " + killerName + " !"); //ЛОГ В КОНСОЛЬ
+        player.notify('~r~' + deathName + ' был убит ' + killerName + "!");
+        console.log("<Kill log> " + deathName + " был убит " + killerName + "!"); //ЛОГ В КОНСОЛЬ
     } else {
-        player.notify('~r~' + deathName + ' покончил с собой');
+        player.notify('~r~' + deathName + ' покончил с собой!');
         console.log("<Kill log> " + deathName + " покончил с собой!"); //ЛОГ В КОНСОЛЬ
     }
 
