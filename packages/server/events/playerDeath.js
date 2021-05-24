@@ -4,10 +4,10 @@
     if (killer) {
         const killerName = killer.name;
         player.notify('~r~' + deathName + ' был убит ' + killerName);
-        console.log("<Kill log> {#FF0000}${deathName} был убит ${killerName}!"); //ЛОГ В КОНСОЛЬ
+        console.log("<Kill log> " + deathName + "был убит " + killerName + " !"); //ЛОГ В КОНСОЛЬ
     } else {
         player.notify('~r~' + deathName + ' покончил с собой');
-        console.log("<Kill log> {#FF0000}${deathName} покончил с собой!"); //ЛОГ В КОНСОЛЬ
+        console.log("<Kill log> " + deathName + " покончил с собой!"); //ЛОГ В КОНСОЛЬ
     }
 
     setTimeout(() => {
