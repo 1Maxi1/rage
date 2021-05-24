@@ -2,9 +2,7 @@
 global.gm       = {};
 global.server   = {};
 
-
-//Лого которе я заебался делать
-/*
+/*Лого которе я заебался делать
 console.log('\x1b[32m[DONE]\x1b[0m\x1b[32m[=========================================================]\x1b[0m');
 console.log('\x1b[32m[DONE]\x1b[0m 	   Спасибо что используете мод от C4!');
 console.log('\x1b[32m[DONE]\x1b[0m');
@@ -19,7 +17,6 @@ console.log('\x1b[32m[DONE]\x1b[0m		Server loading...');
 console.log('\x1b[32m[DONE]\x1b[0m');
 console.log('\x1b[32m[DONE]\x1b[0m\x1b[32m[=========================================================]\x1b[0m');
 */
-
 gm.cronjob      = require('node-cron');
 gm.bcrypt		= require('bcrypt-nodejs');
 gm.mysql        = require('./core/mysql');
