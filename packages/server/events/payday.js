@@ -8,8 +8,6 @@ function timer30sec(){
     }
 }
 function PayDay() {
-    //Ваш скрипт  
-    console.log("=======PAY DAY=======");
-    //gm.mysql.Handle.query('UPDATE `user` SET money = ? +2 WHERE name = ?'
-    mp.players.broadcast(`=======PAY DAY=======\n+100$ от государства`);
+    console.log("=======PAY DAY======="); //Лог к консоль о PayDay
+    mp.players.broadcast(`=======PAY DAY=======\n+100$ от государства`); //Пишет всеу серверу что щас Pay Day
 }
