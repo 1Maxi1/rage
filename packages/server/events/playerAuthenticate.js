@@ -63,28 +63,20 @@ mp.events.add("testSpawn", (player) =>
     gm.utility.loadAccount(player);
 	player.logged = 1;
     player.outputChatBox("Добро пожаловать на SWG RP <span style='color:#e038ac'>" + player.name + "</span><span style='color:#ffffff'>.</span>");
-   // player.outputChatBox("<span style='color:#cf0b0b'>" + "<SRV>" + "</span> <span style='color:#ffffff'>Чтобы просмотреть список команд, введите /help!</span>");
-   // player.notify('');
     player.notify("Добро пожаловать <span style='color:#e038ac'>" + player.name + "</span><span style='color:#ffffff'>!</span>");
     if (player.admin < 1)
         {
-            //player.name = "~r~Администратор ${player.name} (${player.id})";
             console.log("<LOG> " + player.name + " зашел как администратор: " + player.admin + " уровня!");
             player.outputChatBox("<span style='color:#cf0b0b'>" + "<SRV>" + "</span><span style='color:#ffffff'>Команда /ah для просмотра списка действий администратора!</span>");
         }
     player.name = `{FFFFFF}${player.name} (${player.id})`;
     player.spawn(new mp.Vector3(-1037.7287, -2737.8232, 20.1962));
     player.call('showhud');
-    mp.players.forEach((_player, player, id) =>
-    {
-       // _player.notify("'~r~' + player.name + '~w~ присоединился!'");
-    });
 
     setTimeout(function()
     {
-        if (player.admin > 0)
+        if (player.admin < 1)
         {
-            //player.name = `!{FF0000}Администратор ${player.name} (${player.id})`;
             console.log("<LOG> " + player.name + " зашел как администратор: " + player.admin + " уровня!");
             player.outputChatBox("<span style='color:#cf0b0b'>" + "<SRV>" + "</span><span style='color:#ffffff'>Команда /ah для просмотра списка действий администратора!</span>");
             player.notify('Вы зашли как админ ' + player.admin + " уровня!");
