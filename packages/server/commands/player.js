@@ -1,25 +1,4 @@
 
-//КОМАНДЫ КОТОРЫЕ ИСПОЛЬЗЫВАЛИСЬ ВО ВРЕМЯ ТЕСТА КОДА
-/*mp.events.addCommand('help', (player, text) =>
-{
-    player.outputChatBox(">> (тест команды) /ping /pos /gotopos /tpto /cars /colour");
-});
-
-
-mp.events.addCommand('ping', (player) =>
-{
-    let playerPing = player.ping
-    player.notify('Ping: ' + playerPing);
-});
-
-mp.events.addCommand('pos', (player) =>
-{
-    let pos = player.position;
-    player.outputChatBox("<SRV> " + player.position);
-});
-
-*/
-
 //КОМАНДА do КОТОРАЯ ПРИ ИСПОЛЬЗЫВАНИЕ ОПИСЫВАЕТ МЕСТНОСТЬ
 mp.events.addCommand('do', (player, message) => {
     //chatCommand(player, message, '(описание): /do [описание]', `!{c2a3da}*  ${message} ((${player.name}))`, 20);
