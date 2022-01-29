@@ -1,17 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-//      ВСЕГО УРОВНЕЙ АДМИНИСТРАЦИИ 4 (обновил 20.05.2021)
-//      ВЫДАВАТЬ АДМИНКУ МОЖНО ТОКО В MYSQL
+//      ВСЕГО УРОВНЕЙ АДМИНИСТРАЦИИ 4 (обновил 29.01.2022)
+//      ВЫДАВАТЬ АДМИНКУ МОЖНО ТОКО В MYSQL (Наверно)
 //      ЭТО ЛИШЬ ШАБЛОН СЕРВЕРА, А НЕ ПОЛНОСТЬЮ РАБОЧИЙ ПРОЕКТ
-//      ПЕРЕД ТЕМ КАК ИСПОЛЬЗОВАТЬ ЕГО СОВЕТУЮ УЗНАТЬ ОБОВСЕМ МОДЕ!
-//
-///////////////////////////////////////////////////////////////////////////////
-//
-//      Используй
-//      player.call("server_to_client_AddNotify", [5000, `HTML текст`, 0]);
-//      Для норм уведомлений над картой...
-//      Не юзай сток говно
-//      Это лучше)
+//      ПЕРЕД ТЕМ КАК ИСПОЛЬЗОВАТЬ ДАННЫЙ МОД СОВЕТУЮ ПОСМОТРЕТЬ КОД!
 //
 ///////////////////////////////////////////////////////////////////////////////
   
@@ -22,11 +14,14 @@ mp.events.addCommand('anim', (player, _, dict, name, speed, flag) => {
     player.playAnimation(dict, name, speed, flag);
 
 })
+
+//Проверка DB на роботоспособность + мелочи
 mp.events.addCommand('test', (player, text) => {
     if(player.admin < 4) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
     player.notify("[=======Test=======]\nкорды " + player.position + "\nmoney " + player.data.money + "$");
 })
 
+//Команда полность рабочая но выдает по id который в DB
 mp.events.addCommand('makeadmin', (player, _, id, alvl) => {
         if(player.admin < 4) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
         if (typeof alvl == 'undefined' || typeof alvl == 'undefined') return player.outputChatBox("<b style='color:#999'>(Syntax)</b> /makeadmin [id] [admin level]");
@@ -35,6 +30,7 @@ mp.events.addCommand('makeadmin', (player, _, id, alvl) => {
         player.notify('~g~Игрок установлен на должность админа!');
     });
 
+//У команды имеються баги и не дороботки
 mp.events.addCommand('nick', (player, idnick) => {
     if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
     if (!idnick || isNaN(idnick)){
@@ -54,10 +50,13 @@ mp.events.addCommand('nick', (player, idnick) => {
     }
 });
 
+//проверка DB на роботоспособность
 mp.events.addCommand('money', (player) => {
+    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
     player.outputChatBox("Money: " + player.data.money + "$");
 });
 
+//Команда не доделана до идеала
 mp.events.addCommand('setmoney', (player, num) => {
     if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
     if(!num || isNaN(num)) return player.outputChatBox('SYNTAX: /setmoney [amount]');
@@ -118,6 +117,7 @@ mp.events.addCommand('amenu', (player) =>
     player.health = 100;
 });*/
 
+//Установка количества HP у игрока
 mp.events.addCommand('sethp', (player, _, target, hp) => {
     if(player.admin < 2) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
     if (target == undefined || hp == undefined) return player.outputChatBox('/sethp [player] [hp]');
@@ -161,6 +161,7 @@ mp.events.addCommand('a', (player, text) =>
             switch(player.admin)
             {
                 case 4:
+		//Советую поменять местамт Разраба и Основателя (мне просто было лень меняять щас)
                 {
                     _player.outputChatBox("<span style='color:#FFC300'>[A] Разработчик | " + player.name + " (ID:" + player.id + ") :</span> <span style='color:#FFFFFF'>" + text);
                     break;
@@ -177,7 +178,7 @@ mp.events.addCommand('a', (player, text) =>
                 }
                 case 1:
                 {
-                    _player.outputChatBox("<span style='color:#FFC300'>[A] М.Админ | " + player.name + " (ID:" + player.id + ") :</span> <span style='color:#FFFFFF'>" + text);
+                    _player.outputChatBox("<span style='color:#FFC300'>[A] Мл.Админ | " + player.name + " (ID:" + player.id + ") :</span> <span style='color:#FFFFFF'>" + text);
                     break;
                 }
             }
@@ -346,7 +347,7 @@ mp.events.addCommand(`delveh`,
     let veh = mp.vehicles.new(mp.joaat(veh_name), pos);
     player.putIntoVehicle(veh, -1);
     veh.dimension = player.dimension;
-    veh.numberPlate = "SWG RP";
+    veh.numberPlate = "test";
     veh.data.playerSpawned = 1;
     player.notify('Заспавенно!');
 });
@@ -387,7 +388,7 @@ mp.events.addCommand('veh', (player, _, id, veh, color1, color2) => {
     pos = target.position;
     var adminVeh = mp.vehicles.new(mp.joaat(veh), new mp.Vector3(pos.x + 2, pos.y, pos.z));
     adminVeh.setColor(parseInt(color1), parseInt(color2));
-    adminVeh.numberPlate = "SWG RP";
+    adminVeh.numberPlate = "RENAME";
     player.dim = player.id;
     setTimeout(() => {
         target.putIntoVehicle(adminVeh, 0) // Спавн за водительское место
