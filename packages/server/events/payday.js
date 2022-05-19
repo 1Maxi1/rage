@@ -7,7 +7,8 @@ function timer30sec(){
             PayDay();// и запускаем скрипт
     }
 }
+
 function PayDay() {
-    console.log("=======PAY DAY======="); //Лог к консоль о PayDay
-    mp.players.broadcast(`=======PAY DAY=======\n+100$ от государства`); //Пишет всеу серверу что щас Pay Day
+    console.log("\x1b[33m[PAYDAY]\x1b[0m"); //Лог к консоль о PayDay
+    mp.players.broadcast(`<span style='color:#FFC300'>[PAYDAY]<span style='color:#FFFFF'> +100$`); //Пишет всему серверу что щас Pay Day
 }
