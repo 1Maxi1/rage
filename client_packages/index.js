@@ -1,6 +1,6 @@
 require('authenticate.js');
 require('peds.js');
-require ('noclip.js');
+require('./admin/index.js');
 global.playerheading = require('./game_resources/plugins/rotatorplayer.js'); // оптимизация
 
 let hud;
