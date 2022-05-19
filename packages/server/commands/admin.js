@@ -15,10 +15,16 @@ mp.events.addCommand('anim', (player, _, dict, name, speed, flag) => {
 
 })
 
+//Включение\Выключение noclip
+mp.events.addCommand("noclip", (player) => {
+    if(player.admin < 4) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
+    player.call("client_packages/admin/events//toggleNoclip");
+})
+
 //Проверка DB на роботоспособность + мелочи
 mp.events.addCommand('test', (player, text) => {
     if(player.admin < 4) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    player.notify("[=======Test=======]\nкорды " + player.position + "\nmoney " + player.data.money + "$");
+    player.outputChatBox("[=======Test=======]\nкорды " + player.position + "\nmoney " + player.data.money + "$");
 })
 
 //Команда полность рабочая но выдает по id который в DB
@@ -74,48 +80,13 @@ mp.events.addCommand('setmoney', (player, num) => {
 mp.events.addCommand('ah', (player, text) =>
 {
     if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
- 		player.notify('/a - админ чат\n/kick - кик игрокас игры\n/ban - выдать бан игроку');
+ 	player.notify('/a - админ чат\n/kick - кик игрокас игры\n/ban - выдать бан игроку');
         player.notify('/spec - зайти в режим наблюдения\n/tphere - телепорт к себе игрока\n/goto - телепорт к игроку');
         player.notify('/gotospawn - телепорт на спавн\n/w - выдать оружие\n/weapons - выдать оркжие (определенное)');
         player.notify('/time - кстпноаить время\n/setw - установить погоду\n/delveh - del все авто');
         player.notify('/sethp - вылечить игрока\n/arm - выдать броню\n/kill - убить игрока');
         player.notify('/veh - заспавнить игрока\n/fix - починить авто\n/color - изменить цвет авто');
-
-    
 });
-
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-/*
-mp.events.addCommand('gm1', (player) => {
-	if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-		Player.setInvincible(true);
-      	mp.gui.chat.push("гм активен");
-	});
-
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-
-mp.events.addCommand('gm2', (player) => {
-	if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-		Player.setInvincible(false);
-      	mp.gui.chat.push("гм отключен");
-    });
-*/
-
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-//НЕ ДОРАБОТАННОЕ АДМ МЕНЮ
-/*
-mp.events.addCommand('amenu', (player) =>
-{
-    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    player.notify('Админ меню Бета'); //МЕНЮ В КОДЕ ЕСТЬ... ОСТАЛОСЬ ТОКО JS НАПИСАТЬ ЧТОБЫ ВСЯ МЕНЮХА РАБОТАЛА
-    player.call('showamenu');
-});
-*/
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-/*mp.events.addCommand('heal', (player) => {
-    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    player.health = 100;
-});*/
 
 //Установка количества HP у игрока
 mp.events.addCommand('sethp', (player, _, target, hp) => {
@@ -140,14 +111,6 @@ mp.events.addCommand('kill', (player) => {
     if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
     player.health = 0;
 });
-
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-//ТЕЛЕПОРТ ИГРОКА НА СПАВН
-/* //УЖЕ ЕСТЬ КОМАНДА gotospawn
-mp.events.addCommand('resetpos', (player) => {
-    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    player.spawn(new mp.Vector3(203.907, -931.770, 30.691));
-});*/
 
 //АДМИН ЧАТ
 mp.events.addCommand('a', (player, text) =>
@@ -235,20 +198,10 @@ mp.events.addCommand('setw', (player, _, weather) => {
     console.log(`<LOG> ${player.name} изменил погоду в игре!`);
 })
 
-//СПЕКТАТОР МОД
-mp.events.addCommand('spec', (player, target) =>
-{
-    if(player.admin < 2) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    freecamToggle();
-    //player.call("server_to_client_AddNotify", [5000, `Скоро...`, 2]);
-    player.notify('~g~ Freecam');
-    //player.outputChatBox("soon");
-});
-
 //ТЕЛЕПОРТ К ИГРОКУ
 mp.events.addCommand('goto', (player, target) =>
 {
-	if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
+    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
     if (typeof target == 'undefined') return player.outputChatBox("Правильное использование: /goto [target]");
     const targetPlayer = gm.utility.findPlayerByIdOrNickname(target);
     let targetPos = targetPlayer.position;
@@ -256,19 +209,6 @@ mp.events.addCommand('goto', (player, target) =>
     player.position = targetPos;
     player.notify('~g~Вы на месте!');
 });
-
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-//ТЕЛЕПОРТ ИГРОКА К СЕБЕ
-/*mp.events.addCommand('tphere', (player, target) =>
-{
-    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    if (typeof target == 'undefined') return player.outputChatBox("Правильное использование: /tphere [target]");
-    const targetPlayer = gm.utility.findPlayerByIdOrNickname(target);
-    let playerPos = player.position;
-    playerPos.x += 5.0;
-    targetPlayer.position = playerPos;
-    player.notify('Игрок на месте!');
-});*/
 
 //ТЕЛЕПОРТ ИГРОКА К СЕБЕ
 mp.events.addCommand('tphere', (player, _, id) => {
@@ -306,22 +246,6 @@ mp.events.addCommand('weapons', (player) => {
     player.giveWeapon([0xC1B3C3D1, 0xCB96392F, 0xBFEFFF6D, 0x83BF0278, 0xA89CB99E], 10000); // ВЫДАЕТЬСЯ МАКСИМУМ ПАТРОН НА ОРУЖИЕ
 });
 
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-//ОЧИСТА ВСЕЙ КАРТЫ ОТ ТС В КОТОРЫХ НЕ СИДЯТ ЛЮДИ
-/*mp.events.addCommand('clean', (player) =>
-{
-    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    mp.vehicles.forEach((vehicle) =>
-    {
-        if(vehicle.getOccupants().length == 0)
-        {
-            vehicle.destroy();
-        }
-    });
-    player.notify('Все автомобили убраны!');
-    console.log("<LOG> Все авто были зареспавнены! ");
-});*/
-
 //УДОЛЯЕТ ВСЕ АВТО + ПИШЕТ НА ВЕСЬ СЕРВЕР ОБ ЭТОМ
 mp.events.addCommand(`delveh`,
     (player) => {
@@ -335,35 +259,6 @@ mp.events.addCommand(`delveh`,
         console.log(`<LOG> ${player.name} Удалил все машины!`);
     }
 );
-
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-//СПАВН ЛЮБОГО АВТО
-/*mp.events.addCommand('veh', (player,  _, veh_name) =>
-{
-    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    if(!veh_name) return player.outputChatBox("Правильное использование: /veh [авто]!");
-    let pos = player.position;
-    pos.x += 2.0;
-    let veh = mp.vehicles.new(mp.joaat(veh_name), pos);
-    player.putIntoVehicle(veh, -1);
-    veh.dimension = player.dimension;
-    veh.numberPlate = "test";
-    veh.data.playerSpawned = 1;
-    player.notify('Заспавенно!');
-});
-
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-mp.events.addCommand('test', (player) => {
-    //player.setCanBeKnockedOffVehicle(state);
-    player.notify('тест!');
-    let flag = !player.getConfigFlag(32, true);
-    player.setConfigFlag(32, flag);
-    mp.gui.chat.push('Seatbelt '+(flag?'off':'on'));
-})*/
-/*
-mp.events.addCommand('givemoney', (player, _, money) => {
-    player.money += 300;
-});*/
 
 //Тюнинг
 mp.events.addCommand('tune', (player, _, modType, modIndex) => {
@@ -388,22 +283,14 @@ mp.events.addCommand('veh', (player, _, id, veh, color1, color2) => {
     pos = target.position;
     var adminVeh = mp.vehicles.new(mp.joaat(veh), new mp.Vector3(pos.x + 2, pos.y, pos.z));
     adminVeh.setColor(parseInt(color1), parseInt(color2));
-    adminVeh.numberPlate = "RENAME";
+    adminVeh.setMod(parseInt('53'), parseInt('2'));
+    adminVeh.numberPlate = player.name + " " + player.id;
     player.dim = player.id;
     setTimeout(() => {
         target.putIntoVehicle(adminVeh, 0) // Спавн за водительское место
     }, 150)
     player.notify('~g~ Заспавенно!');
 })
-
-/////////////////////////////////НЕ РАБОЧЕЕ//////////////////////////////////////////////
-//ПОЧИНИТЬ АВТО
-/*mp.events.addCommand('fix', (player) =>
-{
-    if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
-    player.vehicle.repair();
-    player.notify('Авто было починено!');
-});*/
 
 //ПОЧИНКА АВТО ИСПРАВЛЕННАЯ
 mp.events.addCommand('fix', (player, _, id) => {
@@ -419,7 +306,7 @@ mp.events.addCommand('fix', (player, _, id) => {
 })
 
 //ИЗМЕНЕНИЕ ЦВЕТА АВТО
-mp.events.addCommand('colour', (player, colour1, colour2) =>
+mp.events.addCommand('color', (player, colour1, colour2) =>
 {
     if(player.admin < 1) return player.outputChatBox("<SERVER> У вас нет доступа к этой команде!");
     if (!colour1 || !colour2) return player.outputChatBox("Правильное использование: /colour [primary] [secondary]");
