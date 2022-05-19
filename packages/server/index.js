@@ -2,21 +2,6 @@
 global.gm       = {};
 global.server   = {};
 
-/*Лого которе я заебался делать
-console.log('\x1b[32m[DONE]\x1b[0m\x1b[32m[=========================================================]\x1b[0m');
-console.log('\x1b[32m[DONE]\x1b[0m 	   Спасибо что используете мод от C4!');
-console.log('\x1b[32m[DONE]\x1b[0m');
-console.log('\x1b[32m[DONE]\x1b[0m');
-console.log('\x1b[32m[DONE]\x1b[0m		░█████╗░░░██╗██╗');
-console.log('\x1b[32m[DONE]\x1b[0m		██╔══██╗░██╔╝██║');
-console.log('\x1b[32m[DONE]\x1b[0m		██║░░╚═╝██╔╝░██║');
-console.log('\x1b[32m[DONE]\x1b[0m		██║░░██╗███████║');
-console.log('\x1b[32m[DONE]\x1b[0m		╚█████╔╝╚════██║');
-console.log('\x1b[32m[DONE]\x1b[0m		░╚════╝░░░░░░╚═╝');
-console.log('\x1b[32m[DONE]\x1b[0m		Server loading...');
-console.log('\x1b[32m[DONE]\x1b[0m');
-console.log('\x1b[32m[DONE]\x1b[0m\x1b[32m[=========================================================]\x1b[0m');
-*/
 gm.cronjob      = require('node-cron');
 gm.bcrypt		= require('bcrypt-nodejs');
 gm.mysql        = require('./core/mysql');
@@ -30,11 +15,6 @@ gm.mysql.Connect(function() { });
 let fs          = require('fs');
 let path        = require('path');
 
-require('./commands/player');
-require('./commands/admin');
-require('./game/test');
-require('./game/house');
-
 var registeredEvents = [];
 
 fs.readdirSync(path.resolve(__dirname, 'events')).forEach(src =>
@@ -42,6 +22,13 @@ fs.readdirSync(path.resolve(__dirname, 'events')).forEach(src =>
 	process.stdout.write('\t\"EVENT LOADED: ')
 	process.stdout.write('\t\"' + src + '\"' + '\n');
 	registeredEvents = registeredEvents.concat(require('./events/' + src));
+});
+
+fs.readdirSync(path.resolve(__dirname, 'commands')).forEach(src =>
+{
+		process.stdout.write('\x1b[32m[DONE]\x1b[0m\t\COMMAND LOADED: ')
+		process.stdout.write('\t\"' + src + '\"' + '\n');
+		registeredEvents = registeredEvents.concat(require('./commands/' + src));
 });
 
 registeredEvents.forEach(event => { mp.events.add(event); });
