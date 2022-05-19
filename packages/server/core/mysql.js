@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+var mysql = require('mysql2');
 
 module.exports =
 {
@@ -16,14 +16,14 @@ module.exports =
 		{
 			if (!e)
 			{
-				console.log("\x1b[36m[MYSQL]\x1b[37m Успешное подключение!");
+				console.log("\x1b[36m[MYSQL]\x1b[37m Successful connection!");
 				callback();
 			}
-			else console.log("\x1b[36m[MYSQL]\x1b[37m ТЫ НАКОСЯЧИЛ С ДБ!" + e);
+			else console.log("\x1b[36m[MYSQL]\x1b[37m Can't get tired of connecting to DB:" + e);
 		});
 		this.Handle.on('error', function (err)
 		{
-			console.log("\x1b[31m Warning: SQL ОШИБКА " + err.code);
+			console.log("\x1b[31m Warning: SQL ERROR" + err.code);
 		});
 	}
 };
