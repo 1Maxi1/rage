@@ -8,7 +8,7 @@
 ## Подготовка
 
 1. Нужен текстовый редактор. Из бесплатных и крутых отлично подойдёт [VS Code](https://code.visualstudio.com).
-2. Установленный [Node.js](https://nodejs.org/uk/).
+2. Установленный [Node.js](https://nodejs.org/).
 3. [Вики RageMP](https://wiki.rage.mp/index.php?title=Main_Page) для поиска непонятных Вам строчек кода.
 4. Чистый сервер RageMP.
 5. Базовые знания JS, MySQL, HTML, CSS.
